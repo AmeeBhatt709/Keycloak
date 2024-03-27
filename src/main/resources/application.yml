@@ -1,0 +1,33 @@
+spring:
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/demo
+          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
+server:
+  port: 8081
+
+jwt:
+  auth:
+    converter:
+      resource-id: rest-api
+      principle-attribute: preferred_username
+
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: demo
+  resource: rest-api
+  credentials:
+    secret: 7Prxk35swiqTriJacA11mcWPri4hPM3M
+logging:
+  level:
+    org:
+      springframework: info
+    keycloak: info
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: rest-api
+      client-secret: 11TDQE4trsrqKN3DBRuL3rF0YEu4EkQE
